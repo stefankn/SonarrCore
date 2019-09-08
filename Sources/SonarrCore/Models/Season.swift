@@ -28,8 +28,8 @@ public struct Season: Decodable, Hashable {
     
     public let number: Int
     public let isMonitored: Bool
-    public let episodeFileCount: Int
-    public let totalEpisodeCount: Int
+    public var episodeFileCount = 0
+    public var totalEpisodeCount = 0
     
     
     
@@ -40,8 +40,9 @@ public struct Season: Decodable, Hashable {
         number = try values.decode(Int.self, forKey: .number)
         isMonitored = try values.decode(Bool.self, forKey: .isMonitored)
         
-        let statistics = try values.nestedContainer(keyedBy: StatisticsKeys.self, forKey: .statistics)
-        episodeFileCount = try statistics.decode(Int.self, forKey: .episodeFileCount)
-        totalEpisodeCount = try statistics.decode(Int.self, forKey: .totalEpisodeCount)
+        if let statistics = try? values.nestedContainer(keyedBy: StatisticsKeys.self, forKey: .statistics) {
+            episodeFileCount = try statistics.decode(Int.self, forKey: .episodeFileCount)
+            totalEpisodeCount = try statistics.decode(Int.self, forKey: .totalEpisodeCount)
+        }
     }
 }

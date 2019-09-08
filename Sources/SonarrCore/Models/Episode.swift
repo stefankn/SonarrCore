@@ -21,6 +21,7 @@ public struct Episode: Decodable {
         case hasFile
         case airDateUtc
         case file = "episodeFile"
+        case series
     }
     
     
@@ -37,4 +38,5 @@ public struct Episode: Decodable {
     public let hasFile: Bool
     public let airDateUtc: Date?
     public let file: EpisodeFile?
+    public let series: Series?
 }
