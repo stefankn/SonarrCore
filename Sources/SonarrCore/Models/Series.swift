@@ -8,7 +8,26 @@
 import Foundation
 
 public struct Series: Decodable, Hashable {
+    
+    // MARK: - Types
+    
+    enum CodingKeys: String, CodingKey {
+        case imdbId
+        case images
+        case id
+        case title
+        case sortTitle
+        case overview
+        case status
+        case qualityProfileId
+        case seasons
+        case episodeCount
+        case episodeFileCount
+        case isMonitored = "monitored"
+    }
 
+    
+    
     // MARK: - Properties
     
     let imdbId: String
@@ -21,6 +40,9 @@ public struct Series: Decodable, Hashable {
     public let status: SeriesStatus
     public let qualityProfileId: Int
     public let seasons: [Season]
+    public var episodeCount: Int?
+    public var episodeFileCount: Int?
+    public let isMonitored: Bool
     
     public var poster: String? { imagePath(for: .poster) }
     public var fanart: String? { imagePath(for: .fanart) }
