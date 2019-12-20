@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ImageType: String, Decodable {
+public enum ImageType: String, Codable {
     case poster = "poster"
     case fanart = "fanart"
     case banner = "banner"

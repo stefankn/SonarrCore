@@ -40,13 +40,20 @@ public final class Service {
         guard let url = endpoint(for: request) else {
             fatalError("Invalid URL: \(server.host), endpoint: \(request.endpoint)")
         }
+        print(url)
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
         
-        if request.httpMethod == .post {
+        if request.httpMethod == .post || request.httpMethod == .put {
             urlRequest.httpBody = body(for: request)
         }
+        
+        if let d = urlRequest.httpBody {
+            print("\(String(data: d, encoding: .utf8))")
+        }
+        
+        
         
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue(server.apikey, forHTTPHeaderField: "X-Api-Key")

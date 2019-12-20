@@ -18,7 +18,7 @@ public struct GetCalendar: Request {
     // MARK: - Properties
     
     public let start: Date
-    public let end: Date
+    public let end: Date?
     
     
     // MARK: Request Properties
@@ -29,7 +29,7 @@ public struct GetCalendar: Request {
     
     // MARK: - Construction
     
-    public init(startDate: Date, endDate: Date) {
+    public init(startDate: Date, endDate: Date? = nil) {
         start = startDate
         end = endDate
     }

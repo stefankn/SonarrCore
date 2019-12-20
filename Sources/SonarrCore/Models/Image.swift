@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Image: Decodable, Hashable {
+public struct Image: Codable, Hashable {
     
     // MARK: - Properties
     

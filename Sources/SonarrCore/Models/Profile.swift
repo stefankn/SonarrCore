@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Profile: Decodable {
+public struct Profile: Decodable, Hashable {
     
     // MARK: - Properties
     
