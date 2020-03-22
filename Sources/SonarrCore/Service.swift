@@ -40,7 +40,6 @@ public final class Service {
         guard let url = endpoint(for: request) else {
             fatalError("Invalid URL: \(server.host), endpoint: \(request.endpoint)")
         }
-        print(url)
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.httpMethod.rawValue
@@ -48,13 +47,7 @@ public final class Service {
         if request.httpMethod == .post || request.httpMethod == .put {
             urlRequest.httpBody = body(for: request)
         }
-        
-        if let d = urlRequest.httpBody {
-            print("\(String(data: d, encoding: .utf8))")
-        }
-        
-        
-        
+ 
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue(server.apikey, forHTTPHeaderField: "X-Api-Key")
 
@@ -86,7 +79,7 @@ public final class Service {
         }
         
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        if request.httpMethod == .get, let queryItems = try? URLQueryItemEncoder.encode(request), !queryItems.isEmpty {
+        if (request.httpMethod == .get || request.httpMethod == .delete), let queryItems = try? URLQueryItemEncoder.encode(request), !queryItems.isEmpty {
             components?.queryItems = queryItems
         }
         
