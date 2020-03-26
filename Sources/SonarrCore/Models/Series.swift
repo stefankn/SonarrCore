@@ -30,7 +30,7 @@ public struct Series: Decodable, Hashable {
     
     // MARK: - Properties
     
-    let imdbId: String
+    let imdbId: String?
     let images: [Image]
     
     public let id: Int
@@ -47,6 +47,15 @@ public struct Series: Decodable, Hashable {
     public var poster: String? { imagePath(for: .poster) }
     public var fanart: String? { imagePath(for: .fanart) }
     public var banner: String? { imagePath(for: .banner) }
+    
+    public var imdbURL: URL? {
+        if let imdbId = imdbId {
+            return URL(string: "https://www.imdb.com/title/\(imdbId)")
+        } else {
+            return nil
+        }
+    }
+    
     
     
     // MARK: - Functions
