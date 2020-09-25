@@ -31,8 +31,7 @@ public struct Episode: Codable {
     
     // MARK: - Properties
     
-    let id: Int
-    
+    public let id: Int
     public let number: Int
     public let title: String
     public let season: Int

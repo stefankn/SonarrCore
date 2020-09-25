@@ -25,7 +25,5 @@ extension Request {
     
     // MARK: - Properties
     
-    public var httpMethod: HTTPMethod {
-        return .get
-    }
+    public var httpMethod: HTTPMethod { .get }
 }
